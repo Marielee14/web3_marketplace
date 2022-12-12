@@ -14,7 +14,9 @@ contract BasicNft is ERC721 {
     constructor() ERC721("Dogie", "DOG") {
         s_tokenCounter = 0;
     }
-
+/** utilize openZeppelin ERC721 base contract that we are inheriting from
+mintNft mints the token and registers the msg.sender(the function caller) as the owner of NFT with the token ID passed
+in the secont argument. tokenCounter, the state variable to track how many tokens are minted and also the token IDs  */
     function mintNft() public {
         _safeMint(msg.sender, s_tokenCounter);
         emit DogMinted(s_tokenCounter);
@@ -34,6 +36,7 @@ contract BasicNft is ERC721 {
         );
     } */
 
+/** tokenURI and get TokenCounter are getters for state variables */
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
         return TOKEN_URI;
@@ -43,3 +46,5 @@ contract BasicNft is ERC721 {
         return s_tokenCounter;
     }
 }
+
+//run compile with npx hardhat compile

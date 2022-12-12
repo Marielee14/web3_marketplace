@@ -9,7 +9,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments;
   const { deployer } = await getNamedAccounts();
   const waitBlockConfirmations = developmentChains.includes(network.name)
-    ? 1
+    ? 1 //For development chains, we wait for only one block to confirm
     : VERIFICATION_BLOCK_CONFIRMATIONS;
 
   log("----------------------------------------------------");
@@ -32,4 +32,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   log("----------------------------------------------------");
 };
 
-module.exports.tags = ["all", "nftmarketplace"];
+module.exports.tags = ["all", "nftMarketplace"];
